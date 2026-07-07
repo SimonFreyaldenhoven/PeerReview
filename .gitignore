@@ -1,45 +1,28 @@
 # ==============================================================================
-# .gitignore for Academic Claude Code Projects
+# .gitignore — Peer-Review (Referee) Workflow
 # ==============================================================================
 
-# LaTeX build artifacts
-*.aux
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.log
-*.nav
-*.out
-*.snm
-*.toc
-*.vrb
-*.synctex.gz
-*.run.xml
-*-blx.bib
+# Manuscripts under review are usually confidential — don't commit input PDFs.
+# (Delete these two lines if you want to track example papers in the repo.)
+papers/*.pdf
+papers/*.PDF
 
-# Compiled PDFs (uncomment to track specific PDFs)
-# *.pdf
+# Referee pipeline scratch space (paper briefs, intermediates)
+referee_reports/.work/
 
 # Python
 __pycache__/
 *.pyc
 *.pyo
 
-# R
-.Rproj.user/
-.Rhistory
-.RData
-.Rdata
-
-# OS files
-.DS_Store
-Thumbs.db
-
 # Claude Code local files (not shared across machines)
 .claude/settings.local.json
 .claude/state/
 CLAUDE.local.md
+
+# OS files
+.DS_Store
+Thumbs.db
 
 # IDE
 .vscode/
@@ -47,10 +30,3 @@ CLAUDE.local.md
 *.swp
 *.swo
 *~
-
-# Quarto rendering artifacts
-/.quarto/
-
-# Output artifacts — uncomment lines below based on your preference
-# *.rds
-# output/**/*.rds

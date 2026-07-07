@@ -6,12 +6,12 @@
 ## Files Modified
 | File | Type | Quality Score |
 |------|------|---|
-| `path/to/file` | [Code/Slides/Config] | [N]/100 |
+| `path/to/file` | [Skill/Agent/Rule/Doc/Config] | [N]/100 |
 
 ## Verification
-- [ ] Compilation/execution succeeds
-- [ ] Tolerance checks PASS (if applicable)
-- [ ] Tests pass (if applicable)
+- [ ] Pipeline runs end-to-end on a sample paper
+- [ ] Report passes the quality-gates checklist
+- [ ] No orphaned references to removed files
 - [ ] Quality gates >= 80
 
 ## Status

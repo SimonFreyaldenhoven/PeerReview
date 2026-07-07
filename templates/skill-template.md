@@ -379,4 +379,4 @@ When adapting this template to your domain:
 - **Purpose:** Starter for domain-specific skills
 - **Usage:** Copy to `.claude/skills/[name]/SKILL.md`, customize for your field
 
-For existing skills examples, see `.claude/skills/` directory (22 skills for LaTeX, R, Quarto, and research workflows).
+For existing skill examples, see the `.claude/skills/` directory (the `referee` pipeline, `lit-review`, `commit`, `context-status`, `learn`).

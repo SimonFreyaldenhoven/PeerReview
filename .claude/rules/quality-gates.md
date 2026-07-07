@@ -1,67 +1,28 @@
----
-paths:
-  - "Slides/**/*.tex"
-  - "Quarto/**/*.qmd"
-  - "scripts/**/*.R"
----
+# Quality Gates — Referee Reports
 
-# Quality Gates & Scoring Rubrics
+A referee report ships only when it would be useful to a real editor. There is no compile step; the gate is a **quality checklist**, not a numeric score.
 
-## Thresholds
+## Ship checklist (all must hold before the report is saved)
 
-- **80/100 = Commit** -- good enough to save
-- **90/100 = PR** -- ready for deployment
-- **95/100 = Excellence** -- aspirational
+| # | Gate | Why |
+|---|------|-----|
+| 1 | **Grounded** — every specific claim cites an exact location; no invented numbers or citations (`review-verification.md` passed) | A wrong objection destroys credibility |
+| 2 | **Specific** — every concern names a section/table/eq/page; no vague "the paper is weak" | An editor must be able to act on it |
+| 3 | **Actionable** — every concern carries a suggestion or the analysis that would resolve it | Referees help, not just judge |
+| 4 | **Calibrated** — majors genuinely threaten the conclusions; minors are separated out; FATAL vs. ADDRESSABLE distinguished | Not everything is equally important |
+| 5 | **Complete** — all five dimensions covered (contribution, identification, specification, literature, writing) and the adversarial pass ran | No blind spots |
+| 6 | **Fair** — genuine strengths acknowledged; tone constructive | Balanced reports carry more weight |
+| 7 | **Coherent** — reviewer overlaps deduped, disagreements adjudicated, one clear recommendation with justification | It reads as one referee, not four |
 
-## Quarto Slides (.qmd)
+## Dimension ratings
 
-| Severity | Issue | Deduction |
-|----------|-------|-----------|
-| Critical | Compilation failure | -100 |
-| Critical | Equation overflow | -20 |
-| Critical | Broken citation | -15 |
-| Critical | Typo in equation | -10 |
-| Major | Text overflow | -5 |
-| Major | TikZ label overlap | -5 |
-| Major | Notation inconsistency | -3 |
-| Minor | Font size reduction | -1 per slide |
-| Minor | Long lines (>100 chars) | -1 (EXCEPT documented math formulas) |
-
-## R Scripts (.R)
-
-| Severity | Issue | Deduction |
-|----------|-------|-----------|
-| Critical | Syntax errors | -100 |
-| Critical | Domain-specific bugs | -30 |
-| Critical | Hardcoded absolute paths | -20 |
-| Major | Missing set.seed() | -10 |
-| Major | Missing figure generation | -5 |
-
-## Beamer Slides (.tex)
-
-| Severity | Issue | Deduction |
-|----------|-------|-----------|
-| Critical | XeLaTeX compilation failure | -100 |
-| Critical | Undefined citation | -15 |
-| Critical | Overfull hbox > 10pt | -10 |
+Each dimension is scored 1–5 per the rubric in `referee-report-protocol.md`. Ratings inform — but do not mechanically produce — the overall recommendation. A single fatal flaw caps the overall regardless of polish elsewhere.
 
 ## Enforcement
 
-- **Score < 80:** Block commit. List blocking issues.
-- **Score < 90:** Allow commit, warn. List recommendations.
-- User can override with justification.
+- **Any gate fails →** fix before saving (loop back through synthesis / fact-check). This is the orchestrator's job; see `orchestrator-protocol.md`.
+- The user can always override with justification (e.g. "quick take, skip the web literature check").
 
-## Quality Reports
+## Quality reports (process meta-work)
 
-Generated **only at merge time**. Use `templates/quality-report.md` for format.
-Save to `quality_reports/merges/YYYY-MM-DD_[branch-name].md`.
-
-## Tolerance Thresholds (Research)
-
-<!-- Customize for your domain -->
-
-| Quantity | Tolerance | Rationale |
-|----------|-----------|-----------|
-| Point estimates | [e.g., 1e-6] | [Numerical precision] |
-| Standard errors | [e.g., 1e-4] | [MC variability] |
-| Coverage rates | [e.g., +/- 0.01] | [MC with B reps] |
+Merge-time quality reports for changes to *this repo's infrastructure* still use `templates/quality-report.md` → `quality_reports/merges/`. Referee reports themselves are the product and live in `referee_reports/`.
