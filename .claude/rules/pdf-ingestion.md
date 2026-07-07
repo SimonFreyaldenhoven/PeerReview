@@ -19,11 +19,14 @@ After reading, write a faithful structured brief to `referee_reports/.work/<name
 - Title, authors, venue/date if shown
 - Abstract (as written)
 - Research question and claimed contribution
+- **Paper type** — classify as reduced-form / structural / theory+empirics / descriptive-measurement. This selects which dimensions and sanity checks the methods reviewer applies (don't demand parallel trends from a structural paper, or an exclusion restriction from a descriptive one).
 - Data, sample, and time period
 - Research design / estimator; identifying assumptions **as the authors state them**
 - Headline results **with the actual numbers**
 - Each main table/figure: number + one line on what it shows
 - The reference list
+
+If the run was invoked with `--journal [X]`, also record the resolved calibration (matched profile / "profile not on file" / "generic top-5") so every reviewer shares it.
 
 The brief orients the sub-agents. It is **not** authoritative — the PDF is. Every reviewer verifies claims against the source before putting them in the report (see `review-verification.md`).
 
