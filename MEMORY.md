@@ -17,6 +17,18 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:review] The paper brief is orientation for sub-agents, not authoritative. Reviewers must verify load-bearing claims against the source PDF, and the orchestrator re-verifies anything that drives a major concern or the recommendation.
 
+[LEARN:review] Journal calibration is opt-in: `--journal [X]` tunes reviewers to a target journal's bar via `.claude/references/journal-profiles.md`; with no flag, reviewers default to generic top-5. Don't force a journal choice on the common case.
+
+[LEARN:review] Reviews are paper-type aware (reduced-form / structural / theory+empirics / descriptive). The methods reviewer applies type-specific dimensions + sanity checks — don't demand parallel trends from a structural paper or an exclusion restriction from a descriptive one.
+
+[LEARN:review] Every major concern must state "what would change my mind" (the specific test/evidence that resolves it) — sharper and more actionable than a bare "suggestion".
+
+[LEARN:review] Classify major concerns FATAL / ADDRESSABLE / TASTE and roll up into MUST / SHOULD / MAY-push-back. Keep our judgment-based recommendation — do NOT adopt mechanical weighted 0–100 scoring.
+
+[LEARN:review] Default table-format convention is **no significance stars** (SEs in parentheses; exact p-values/CIs for key results). The writing reviewer flags stars unless a journal profile explicitly permits them.
+
+[LEARN:review] Journal-calibration / paper-type / "what-would-change-my-mind" concepts were adapted from clo-author (Hugo Sant'Anna). It has no LICENSE → all-rights-reserved, so adapt ideas and re-author text; credit the source. See [[meta-governance]].
+
 ## Workflow Patterns
 
 [LEARN:workflow] Requirements specification (AskUserQuestion, 3-5 questions) before planning catches ambiguity early → reduces rework 30-50%. Use for complex/ambiguous tasks (>1 hour or >3 files).

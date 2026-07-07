@@ -29,6 +29,12 @@ Then drop your manuscript into `papers/` and ask:
 
 Claude runs the full pipeline and writes the report to `referee_reports/`. With no argument, `/referee` lists the PDFs in `papers/` and asks which one.
 
+To review as if for a specific journal, add `--journal`:
+
+> `/referee papers/manuscript.pdf --journal QJE`
+
+Without the flag, reviewers behave as generic top-5 referees.
+
 ---
 
 ## How It Works
@@ -36,10 +42,10 @@ Claude runs the full pipeline and writes the report to `referee_reports/`. With 
 ```
 PDF in papers/
    │
-   1. INGEST       read the whole paper (+ appendix); write a structured "paper brief"
-   2. REVIEW       4 specialist reviewers run in parallel
-   3. ADVERSARIAL  a toughest-referee pass hunts for reject-worthy objections
-   4. SYNTHESIZE   dedupe, reconcile, rank major/minor, rate, recommend → one report
+   1. INGEST       read the whole paper (+ appendix); classify paper type; write a "paper brief"
+   2. REVIEW       4 specialist reviewers run in parallel (calibrated to --journal if given)
+   3. ADVERSARIAL  a toughest-referee pass hunts for reject-worthy objections (FATAL/ADDRESSABLE/TASTE)
+   4. SYNTHESIZE   dedupe, reconcile, rank, rate, MUST/SHOULD/MAY, recommend → one report
    5. FACT-CHECK   verify every location reference and claim against the paper
    6. DELIVER      save to referee_reports/ and print the summary + recommendation
 ```
@@ -65,11 +71,16 @@ The single most important rule: **every criticism cites an exact location** (sec
 Structured-critique format (`templates/referee-report.md`):
 
 - **Summary Assessment** with an overall recommendation (Accept / Minor / Major Revision / Reject & Resubmit / Reject)
+- **Action Summary** — MUST address / SHOULD address / MAY push back
 - **Strengths**
-- **Major Concerns** (most severe first; fatal objections lead)
+- **Major Concerns** (most severe first; each tagged FATAL / ADDRESSABLE / TASTE, with **"what would change my mind"** — the specific evidence that resolves it)
 - **Minor Concerns**
 - **Referee Objections** — the hardest questions the authors must answer
-- **Ratings** — 1–5 across five dimensions
+- **Ratings** — 1–5 across five dimensions, calibrated to the target journal's bar
+
+### Calibration & paper type
+
+Reviews are **paper-type aware** — a structural paper is judged on parameter identification and model fit, not parallel trends; a descriptive paper on construct validity, not exclusion restrictions. When you pass `--journal [X]`, the panel calibrates to that journal's bar and conventions (including AEA no-stars table formatting) via `.claude/references/journal-profiles.md`.
 
 ---
 
@@ -119,6 +130,8 @@ Keep changes framework-oriented — describe what each reviewer lens is *for*, t
 ## Origin
 
 Specialized from the [academic Claude Code workflow template](https://github.com/pedrohcgs/claude-code-my-workflow) (Pedro Sant'Anna) by stripping it down to a single job: high-quality peer review. The contractor-mode backbone — plan-first for meta-work, quality gates, multi-agent orchestration, context survival — is inherited from that template.
+
+The journal-calibration, paper-type-aware review, and "what would change my mind" ideas were adapted from Hugo Sant'Anna's [clo-author](https://github.com/hugosantanna/clo-author) (concepts only; all text re-authored here).
 
 ## License
 

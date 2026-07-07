@@ -24,15 +24,19 @@
 ## The Pipeline (`/referee`)
 
 ```
-PDF in papers/  →  1. INGEST      read end-to-end, write a paper brief
-                   2. REVIEW      4 specialists in parallel
-                   3. ADVERSARIAL toughest-referee pass
-                   4. SYNTHESIZE  one report: dedupe, rank, rate, recommend
+PDF in papers/  →  1. INGEST      read end-to-end; classify paper type; write a paper brief
+                   2. REVIEW      4 specialists in parallel (calibrated to --journal if given)
+                   3. ADVERSARIAL toughest-referee pass (FATAL / ADDRESSABLE / TASTE)
+                   4. SYNTHESIZE  one report: dedupe, rank, rate, MUST/SHOULD/MAY, recommend
                    5. FACT-CHECK  verify every claim against the paper
                    6. DELIVER     save to referee_reports/
 ```
 
 Reviewer dimensions: **Contribution** · **Identification** · **Econometric Specification** · **Literature & Positioning** · **Writing & Presentation**. Each rated 1–5; overall recommendation is the referee's judgment, not a mechanical average.
+
+- **Paper-type aware** — reviews adapt to reduced-form / structural / theory+empirics / descriptive (no parallel-trends demand of a structural paper).
+- **Optional journal calibration** — `--journal [X]` tunes the review to a journal's bar via `.claude/references/journal-profiles.md`; omitted → generic top-5.
+- **"What would change my mind"** — every major concern names the specific evidence that would resolve it.
 
 ---
 
@@ -42,7 +46,7 @@ Reviewer dimensions: **Contribution** · **Identification** · **Econometric Spe
 ├── CLAUDE.md                # This file
 ├── README.md                # Quick start
 ├── MEMORY.md                # Cross-session learnings ([LEARN] entries)
-├── .claude/                 # skills, agents, rules, hooks, settings
+├── .claude/                 # skills, agents, rules, references, hooks, settings
 ├── papers/                  # INPUT — drop the manuscript here
 ├── referee_reports/         # OUTPUT — generated reports (.work/ = scratch)
 ├── quality_reports/         # Plans + session logs (meta-work on the repo)
@@ -55,7 +59,8 @@ Reviewer dimensions: **Contribution** · **Identification** · **Econometric Spe
 
 ```bash
 # Referee a paper (main command)
-/referee papers/manuscript.pdf     # or: /referee manuscript.pdf
+/referee papers/manuscript.pdf              # generic top-5 referee
+/referee papers/manuscript.pdf --journal QJE  # calibrated to a target journal
 
 # Inspect a PDF before/while reviewing
 pdfinfo papers/manuscript.pdf
@@ -67,7 +72,7 @@ pdfinfo papers/manuscript.pdf
 
 | Command | What It Does |
 |---------|-------------|
-| `/referee [pdf]` | **Main** — full multi-agent + adversarial referee report |
+| `/referee [pdf] [--journal X]` | **Main** — full multi-agent + adversarial referee report; optional journal calibration |
 | `/lit-review [topic]` | Literature search + synthesis (positioning / missing-citation support) |
 | `/commit [msg]` | Stage, commit, PR, merge |
 | `/context-status` | Session health + context usage |

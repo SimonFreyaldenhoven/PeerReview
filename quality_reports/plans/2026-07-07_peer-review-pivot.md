@@ -1,6 +1,6 @@
 # Plan: Pivot repo to a peer-review (referee report) pipeline
 
-**Status:** DRAFT — awaiting approval
+**Status:** COMPLETED (2026-07-07) — committed locally on `main` (checkpoint → remove → feat), not pushed. Functional end-to-end run pending a real PDF in `papers/`.
 **Date:** 2026-07-07
 **Goal:** Transform this fork from an academic-slides workflow into a focused tool: *supply a PDF → get a high-quality economics/econometrics referee report.* Everything slide/Quarto/teaching-related is removed.
 
