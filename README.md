@@ -1,4 +1,4 @@
-# Referee — AI-Assisted Peer Review
+# PeerReview — AI-Assisted Referee Reports
 
 > Drop a paper PDF in, get a top-journal-quality referee report out.
 
@@ -13,8 +13,8 @@ A focused Claude Code setup for refereeing economics manuscripts. You supply a p
 ### 1. Clone
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/claude-code-my-workflow.git referee
-cd referee
+git clone https://github.com/YOUR_USERNAME/PeerReview.git
+cd PeerReview
 ```
 
 ### 2. Add a paper and run
