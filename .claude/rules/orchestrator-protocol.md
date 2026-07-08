@@ -10,8 +10,8 @@ Paper supplied → orchestrator activates
   Step 1: INGEST — read the PDF end-to-end; write the paper brief
   │        (pdf-ingestion.md)
   │
-  Step 2: REVIEW — launch the 4 specialists in parallel
-  │        (methods · contribution · literature · writing)
+  Step 2: REVIEW — launch the 5 specialists in parallel
+  │        (methods · contribution · literature · writing · consistency)
   │
   Step 3: ADVERSARIAL — toughest-referee pass over paper + specialist outputs
   │

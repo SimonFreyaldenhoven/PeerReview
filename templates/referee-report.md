@@ -37,7 +37,7 @@ main strengths, and the decisive concerns that drive the recommendation.]
 *(Most severe first. FATAL items lead.)*
 
 ### MC1: [title] — [FATAL / ADDRESSABLE / TASTE]
-- **Dimension:** [Contribution / Identification / Econometric Specification / Literature / Writing]
+- **Dimension:** [Contribution / Identification / Econometric Specification / Literature / Writing / Internal Consistency]
 - **Issue:** [what is wrong and why it threatens the conclusions]
 - **Evidence:** [exact location — section / table / eq. / page]
 - **What would change my mind:** [the specific test, evidence, or revision that resolves it]
@@ -55,6 +55,15 @@ main strengths, and the decisive concerns that drive the recommendation.]
 ### mc1: [title]
 - **Issue:** [description] — **Location:** […]
 - **Suggestion:** [fix]
+
+---
+
+## Consistency Check
+
+*Internal numeric-agreement audit (consistency-reviewer). No dimension rating; confirmed mismatches also appear under Major/Minor Concerns.*
+
+- **Verified:** [the reconciliations cross-checked and found consistent — exhibits / quantities]
+- **Issues:** [each mismatch — quantity: doc/loc A = X vs. doc/loc B = Y → which value is likely correct] *(or "none; internally consistent on the quantities checked")*
 
 ---
 

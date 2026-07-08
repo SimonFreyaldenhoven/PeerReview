@@ -25,7 +25,7 @@
 
 ```
 PDF in papers/  →  1. INGEST      read end-to-end; classify paper type; write a paper brief
-                   2. REVIEW      4 specialists in parallel (calibrated to --journal if given)
+                   2. REVIEW      5 specialists in parallel (calibrated to --journal if given)
                    3. ADVERSARIAL toughest-referee pass (FATAL / ADDRESSABLE / TASTE)
                    4. SYNTHESIZE  one report: dedupe, rank, rate, MUST/SHOULD/MAY, recommend
                    5. FACT-CHECK  verify every claim against the paper
@@ -88,6 +88,7 @@ pdfinfo papers/manuscript.pdf
 | `contribution-reviewer` | Question, novelty, whether conclusions follow |
 | `literature-reviewer` | Citation completeness & positioning (may use web, flagged) |
 | `writing-reviewer` | Clarity, notation, self-contained exhibits |
+| `consistency-reviewer` | Internal consistency — numbers and repeated stated facts agree across tables/figures/text/appendix |
 | `adversarial-referee` | Reasons to reject; what the specialists missed |
 
 ---

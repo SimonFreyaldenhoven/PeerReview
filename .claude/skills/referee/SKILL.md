@@ -1,6 +1,6 @@
 ---
 name: referee
-description: Produce a top-journal-quality economics referee report from a paper PDF. Orchestrates paper-type-aware parallel specialist reviewers (methods, contribution, literature, writing), an adversarial toughest-referee pass, then synthesizes one structured report and fact-checks every claim against the paper. Optionally calibrates to a target journal. Use when the user supplies a paper to review or says "referee this", "review this paper", "write a referee report".
+description: Produce a top-journal-quality economics referee report from a paper PDF. Orchestrates paper-type-aware parallel specialist reviewers (methods, contribution, literature, writing, consistency), an adversarial toughest-referee pass, then synthesizes one structured report and fact-checks every claim against the paper. Optionally calibrates to a target journal. Use when the user supplies a paper to review or says "referee this", "review this paper", "write a referee report".
 argument-hint: "[path to a PDF, or a filename in papers/] [--journal X]"
 allowed-tools: ["Read", "Grep", "Glob", "Write", "Bash", "Task", "WebSearch", "WebFetch"]
 ---
@@ -32,18 +32,19 @@ Follow the rules in `.claude/rules/`: `pdf-ingestion.md`, `referee-report-protoc
 
 ## Phase 2 — Specialist reviews (parallel)
 
-Launch **all four** specialists in a single message (concurrent Task calls). Pass each: the **document paths** (main paper + any companion appendix/supplement), the **brief path**, the **paper type**, and the **journal calibration** (profile text, or "generic top-5"):
+Launch **all five** specialists in a single message (concurrent Task calls). Pass each: the **document paths** (main paper + any companion appendix/supplement), the **brief path**, the **paper type**, and the **journal calibration** (profile text, or "generic top-5"):
 
 - `methods-reviewer` — identification/estimation on the type-specific dimensions + mandatory sanity checks
 - `contribution-reviewer` — question, novelty, whether conclusions follow (judged against the journal's bar)
 - `literature-reviewer` — citation completeness & positioning against the journal's frontier (may use the web; flags web claims)
 - `writing-reviewer` — clarity, notation, self-contained exhibits, journal table-format convention
+- `consistency-reviewer` — internal consistency: the same quantity **and any repeated stated fact (sample period, N, definitions)** agree across tables/figures/text/appendix, the prose never contradicts itself, and stated formulas/aggregates/derived statistics reconcile (light re-derivation, read-only)
 
 Each returns the structured block defined in its agent file, with **"what would change my mind"** on every major concern.
 
 ## Phase 3 — Adversarial pass
 
-Launch `adversarial-referee` with the document set, the brief, the paper type + journal calibration, and the four specialist outputs. It hunts for reject-worthy objections and anything the specialists missed, labeling each `FATAL` / `ADDRESSABLE` / `TASTE` against the calibrated bar.
+Launch `adversarial-referee` with the document set, the brief, the paper type + journal calibration, and the five specialist outputs. It hunts for reject-worthy objections and anything the specialists missed, labeling each `FATAL` / `ADDRESSABLE` / `TASTE` against the calibrated bar.
 
 ## Phase 4 — Synthesize (you act as editor)
 
@@ -51,13 +52,14 @@ Merge everything into one report — do not just concatenate:
 - **Deduplicate & reconcile.** Fold overlapping points together. Where reviewers disagree, adjudicate and explain your call.
 - **Classify every major concern** `FATAL` / `ADDRESSABLE` / `TASTE`, judged against the calibrated bar.
 - **Rank** by how much the conclusions depend on the point (FATAL first), not by which reviewer raised it.
+- **Compile the Consistency Check.** Carry the consistency-reviewer's audit into the report's `## Consistency Check` section (verified reconciliations + each mismatch with **both** locations and values); fold any confirmed mismatch into the ranked concerns, tagged to the existing dimension it threatens (usually Econometric Specification) — it earns **no** separate rating.
 - **Produce a MUST / SHOULD / MAY summary:** MUST = FATAL + serious ADDRESSABLE; SHOULD = other ADDRESSABLE; MAY push back = TASTE.
 - **Recommend.** Choose an overall recommendation and set the 1–5 dimension ratings — the referee's judgment informed by (not a mechanical average of) the specialists.
 - Write the report in the **structured-critique format** from `referee-report-protocol.md`, header stating *Calibrated to* and *Paper type*.
 
 ## Phase 5 — Fact-check (anti-fabrication)
 
-Before saving, run the checklist in `review-verification.md` over your draft: every location reference real, every "they didn't do X" actually confirmed **against the main paper AND every appendix/supplement**, no invented coefficients or citations, web claims flagged `[web]`. Drop or soften anything you cannot stand behind. Verify the load-bearing claims (those driving a MUST item or the recommendation) against the source documents.
+Before saving, run the checklist in `review-verification.md` over your draft: every location reference real, every "they didn't do X" actually confirmed **against the main paper AND every appendix/supplement**, no invented coefficients or citations, web claims flagged `[web]`. Drop or soften anything you cannot stand behind. Verify the load-bearing claims (those driving a MUST item or the recommendation) against the source documents. For each **Consistency Check** ISSUE, re-read **both** cited locations and confirm both numbers — a claimed mismatch is a two-sided factual assertion and is dropped if either side can't be verified.
 
 ## Phase 6 — Deliver
 

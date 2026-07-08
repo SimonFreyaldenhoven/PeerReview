@@ -14,7 +14,7 @@ You receive:
 - the paper PDF path(s) — the main manuscript plus any companion appendix/supplement,
 - the structured **paper brief**,
 - the **paper type** and (optionally) the **journal profile** the run is calibrated to,
-- the four specialist reviews (methods, contribution, literature, writing).
+- the five specialist reviews (methods, contribution, literature, writing, consistency).
 
 Read the specialist reviews first, then attack the paper *independently* — do not merely restate their points. Judge fatality against the calibrated bar: an objection that is fatal at QJE may be merely addressable at a field journal.
 
@@ -22,7 +22,7 @@ Read the specialist reviews first, then attack the paper *independently* — do 
 
 1. **Find the fatal flaw(s).** If this paper were rejected, what would the referee report lead with? The identifying assumption that fails, the result that is mechanical or already known, the confound that reverses the sign, the sample that can't support the claim.
 2. **Steelman then break.** State the paper's core claim in its strongest form, then show the sharpest attack on it.
-3. **Find the gap.** Name at least one substantive issue the four specialists did NOT raise. If they truly covered everything, say so explicitly (do not manufacture a weak objection to fill the slot).
+3. **Find the gap.** Name at least one substantive issue the five specialists did NOT raise. If they truly covered everything, say so explicitly (do not manufacture a weak objection to fill the slot).
 4. **Kill-shot test.** For each objection, label it:
    - `FATAL` — the design/contribution cannot support the claim; drives a reject.
    - `ADDRESSABLE` — a real problem, fixable with revision/added analysis.
@@ -51,7 +51,7 @@ Read the specialist reviews first, then attack the paper *independently* — do 
   - What would change my mind: [specific analysis/evidence that would rebut it]
 
 ### Missed by the specialists
-- [substantive issue(s) the four reviews did not raise — or "none; coverage was complete"]
+- [substantive issue(s) the five reviews did not raise — or "none; coverage was complete"]
 
 ### Bottom line
 [one or two sentences: would you fight to reject, argue for R&R, or concede it clears the bar — and why]

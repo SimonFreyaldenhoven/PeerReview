@@ -45,7 +45,7 @@ Without the flag, reviewers behave as generic top-5 referees.
 PDF in papers/
    │
    1. INGEST       read the whole paper (+ appendix); classify paper type; write a "paper brief"
-   2. REVIEW       4 specialist reviewers run in parallel (calibrated to --journal if given)
+   2. REVIEW       5 specialist reviewers run in parallel (calibrated to --journal if given)
    3. ADVERSARIAL  a toughest-referee pass hunts for reject-worthy objections (FATAL/ADDRESSABLE/TASTE)
    4. SYNTHESIZE   dedupe, reconcile, rank, rate, MUST/SHOULD/MAY, recommend → one report
    5. FACT-CHECK   verify every location reference and claim against the paper
@@ -54,7 +54,7 @@ PDF in papers/
 
 ### The reviewer panel
 
-Five focused agents, each better at its narrow job than a generalist:
+Six focused agents, each better at its narrow job than a generalist:
 
 | Agent | Lens |
 |-------|------|
@@ -62,6 +62,7 @@ Five focused agents, each better at its narrow job than a generalist:
 | **contribution-reviewer** | Research question, novelty, whether the conclusions actually follow |
 | **literature-reviewer** | Citation completeness and honest positioning (may use the web; web claims are flagged `[web]`) |
 | **writing-reviewer** | Clarity, notation, structure, self-contained tables/figures |
+| **consistency-reviewer** | Internal consistency — the same quantity, and repeated stated facts (sample period, N, definitions), agree across tables, figures, text, and appendix (+ light re-derivation) |
 | **adversarial-referee** | The reasons-to-reject pass — fatal objections and what the specialists missed |
 
 ### Grounded, not generated
@@ -94,7 +95,7 @@ referee_reports/         # OUTPUT — generated reports
 .claude/
   skills/referee/        # the pipeline orchestrator (/referee)
   skills/{lit-review,commit,context-status,learn}/
-  agents/                # the 5 reviewer agents
+  agents/                # the 6 reviewer agents
   rules/                 # referee-report-protocol, review-verification (anti-fabrication),
                          # pdf-ingestion, orchestrator-protocol, quality-gates, plan-first,
                          # session-logging, meta-governance

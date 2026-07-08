@@ -14,6 +14,7 @@ A referee report is only as good as its grounding. One invented objection or mis
 4. **No invented citations.** A referenced prior paper must be one you are confident exists. Web-sourced references are marked `[web]` with authors/year/venue so the editor can verify. If unsure, write "possible — verify", never a confident cite.
 5. **Quotes are verbatim.** Anything in quotation marks appears in the paper as written.
 6. **Severity matches evidence.** A concern is only "major/fatal" if the grounding supports it. Downgrade objections whose evidence is thin to "possible concern — worth checking".
+7. **Internal-consistency mismatches are two-sided.** A "figures/tables/text disagree" claim must quote **both** values with **both** document locations and be verified by re-reading **both** — the highest-risk class of claim (an absence claim, doubled). Drop it if either side can't be confirmed.
 
 ## What to do with unverifiable claims
 
