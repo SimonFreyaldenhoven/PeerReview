@@ -41,9 +41,25 @@ demonstrated error from suspected gap, check the appendix before asserting a pro
 valid, fences balanced, stale counts fixed). Not yet committed (awaiting user). End-to-end dry
 run on a formal-results paper still pending — `papers/` only holds a Nature (empirical) PDF.
 
+## End-to-end verification (2026-07-13) — PASSED
+
+Live `/referee` run on `papers/2026_EstimatorWeakInstrument-4 - Apurv Shukla.pdf` (StAR,
+weak-instrument IV inference; theory+empirics, 61 pp.) exercised the new path cleanly:
+- Ingest classified paper type and set the formal-results flag = yes (Thm 1–4, Prop 1–4,
+  Lemmas 1–10) in the brief.
+- `proof-reviewer` **launched conditionally** as the 6th specialist alongside the five core.
+- The report rendered a populated **Formal Results Check** section and a **Theoretical Rigor /
+  Proofs** rating (2/5); empirical rows applied (not a pure-theory paper).
+- The feature drove the outcome: the proof reviewer's **demonstrated ERROR in Proposition 3**
+  (treats the biased 2SLS numerator x̂ᵀη as conditionally mean-zero; E[x̂ᵀη|Z]=ρσ_εσ_η(d_z+1)≠0,
+  the Nagar bias the paper's own Thm 2 computes) is the FATAL that drove the **Reject**
+  recommendation — a flaw the old five-reviewer panel had no lens for. Independently
+  corroborated by the methods, contribution, consistency, and adversarial passes.
+- Report saved to `referee_reports/` (gitignored); brief in `.work/` (gitignored).
+
+Still pending: a pure-`theory` paper (no empirics) to confirm the empirical rating rows render
+N/A. Not blocking.
+
 ## Open questions / follow-ups
 
-- Live `/referee` dry run once a theorem-heavy paper is available, to confirm the conditional
-  launch fires, the Formal Results Check section populates, and empirical rows show N/A for a
-  pure-theory paper.
-- Commit/PR when the user asks (currently on `main`; branch first).
+- Open PR for `feat/proof-reviewer` → main (this session).
