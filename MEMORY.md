@@ -61,6 +61,8 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:files] Input PDFs → `papers/` (gitignored by default; confidential). Reports → `referee_reports/`. Scratch (paper briefs) → `referee_reports/.work/` (gitignored). Plans/specs/session logs → `quality_reports/`. Templates → `templates/`.
 
+[LEARN:files] Manuscripts under review are confidential: the PDFs, generated referee reports (`referee_report_*.md`), and briefs (`.work/`) are gitignored for that reason. **Committed files must not carry manuscript identifiers** — keep paper titles/authors out of session logs, quality reports, MEMORY.md, and commit messages. Refer to a test/example paper generically (e.g., "an econometric-theory manuscript"), not by name. **Why:** session logs and commit messages are tracked and public in a forkable template; a confidential title leaks even though the PDF doesn't. **How to apply:** when logging a `/referee` run, describe the paper by type/domain, never by title or author.
+
 ## Memory System
 
 [LEARN:memory] Two-tier memory: MEMORY.md (generic, committed, <200 lines) vs `.claude/state/personal-memory.md` (machine/user-specific journals + domain tweaks, gitignored). Solves the template-vs-working-project tension.
